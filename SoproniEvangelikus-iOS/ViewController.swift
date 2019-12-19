@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseUI
+import GoogleSignIn
 
 class ViewController: UIViewController, FUIAuthDelegate {
 
@@ -25,8 +26,6 @@ class ViewController: UIViewController, FUIAuthDelegate {
         
     }
     
-    
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -88,6 +87,22 @@ class ViewController: UIViewController, FUIAuthDelegate {
     
     func loginSession() {
         let authViewController = FUIAuth.defaultAuthUI()!.authViewController()
-        //present(authViewController, animated: true, completion: nil)
+        present(authViewController, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func logoutButtonPressed(_ sender: Any) {
+        let firebaseAuth = Auth.auth()
+        do {
+          try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+          print ("Error signing out: %@", signOutError)
+        }
+        // present the login screen again.
+        configureAuth()
+        
+    }
+    
+    @IBAction func menuButtonPressed(_ sender: Any) {
     }
 }
