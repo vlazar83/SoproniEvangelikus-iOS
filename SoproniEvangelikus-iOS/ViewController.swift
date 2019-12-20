@@ -50,6 +50,10 @@ class ViewController: UIViewController, FUIAuthDelegate {
                     self.signedInStatus(isSignedIn: true)
                     let name = user!.email!.components(separatedBy: "@")[0]
                     self.displayName = name
+                    
+                    // after successful login read the documents from Firestore
+                    self.readDataFromFireStore()
+                    
                 }
             } else {
                 // user must sign in
@@ -88,6 +92,20 @@ class ViewController: UIViewController, FUIAuthDelegate {
     func loginSession() {
         let authViewController = FUIAuth.defaultAuthUI()!.authViewController()
         present(authViewController, animated: true, completion: nil)
+    }
+    
+    func readDataFromFireStore(){
+        let db = Firestore.firestore()
+        db.collection("events").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                }
+            }
+        }
+        
     }
     
     
