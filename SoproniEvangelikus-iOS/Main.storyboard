@@ -25,10 +25,52 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="375" id="nc2-Kx-kvO"/>
                                 </constraints>
                             </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gQ5-ap-uXT">
+                                <rect key="frame" x="0.0" y="258" width="375" height="330"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="gQ5-ap-uXT" secondAttribute="height" multiplier="25:22" id="IB3-GT-Zub"/>
+                                    <constraint firstAttribute="height" constant="330" id="JCU-Qi-Z65"/>
+                                    <constraint firstAttribute="width" constant="375" id="RuW-zm-jLy"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventTableViewCell" rowHeight="50" id="Eun-UR-hRg" customClass="EventTableViewCell" customModule="SoproniEvangelikus_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Eun-UR-hRg" id="MaS-Aa-MOo">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="54K-WJ-5Zl">
+                                                    <rect key="frame" x="0.0" y="3" width="179" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Full Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="318-do-Aiy">
+                                                    <rect key="frame" x="187" y="3" width="179" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="eventFullNameLabel" destination="318-do-Aiy" id="iqy-RK-xWZ"/>
+                                            <outlet property="eventNameLabel" destination="54K-WJ-5Zl" id="W78-mb-wgZ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="gQ5-ap-uXT" firstAttribute="top" secondItem="APl-fz-rag" secondAttribute="bottom" constant="16" id="5vO-Eq-6my"/>
                             <constraint firstItem="APl-fz-rag" firstAttribute="trailing" secondItem="gN9-mi-GUB" secondAttribute="trailing" id="J1g-UK-agR"/>
+                            <constraint firstItem="gQ5-ap-uXT" firstAttribute="trailing" secondItem="gN9-mi-GUB" secondAttribute="trailing" id="KQz-ef-bKh"/>
+                            <constraint firstItem="gQ5-ap-uXT" firstAttribute="leading" secondItem="gN9-mi-GUB" secondAttribute="leading" id="Q96-Gj-JxA"/>
                             <constraint firstItem="APl-fz-rag" firstAttribute="top" secondItem="gN9-mi-GUB" secondAttribute="top" id="a2W-a9-1xx"/>
                             <constraint firstItem="APl-fz-rag" firstAttribute="leading" secondItem="gN9-mi-GUB" secondAttribute="leading" id="gAn-56-LH1"/>
                         </constraints>
