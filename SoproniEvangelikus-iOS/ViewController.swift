@@ -10,7 +10,7 @@ import UIKit
 import FirebaseUI
 import GoogleSignIn
 
-class ViewController: UIViewController, FUIAuthDelegate {
+class ViewController: UIViewController, FUIAuthDelegate, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: Properties
     fileprivate var _refHandle: DatabaseHandle!
@@ -18,11 +18,17 @@ class ViewController: UIViewController, FUIAuthDelegate {
     var user: User?
     var displayName = "Anonymous"
     
+    @IBOutlet weak var tableView: UITableView!
+    
+    //MARK: Properties
+    var events = [Event]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
-        configureAuth()
+        loadSampleEvents()
+        
+        // configureAuth()
         
     }
     
@@ -123,4 +129,40 @@ class ViewController: UIViewController, FUIAuthDelegate {
     
     @IBAction func menuButtonPressed(_ sender: Any) {
     }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return events.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // Table view cells are reused and should be dequeued using a cell identifier.
+        let cellIdentifier = "EventTableViewCell"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? EventTableViewCell  else {
+            fatalError("The dequeued cell is not an instance of EventTableViewCell.")
+        }
+        // Configure the cell...
+        
+        // Fetches the appropriate meal for the data source layout.
+        let event = events[indexPath.row]
+        
+        cell.eventNameLabel.text = event.name
+        cell.eventFullNameLabel.text = event.fullName
+
+        return cell
+    }
+    
+    //MARK: Private Methods
+     
+    private func loadSampleEvents() {
+        
+        let event1 = Event(fullName: "Full Name1", name: "Name")
+         
+        let event2 = Event(fullName: "Full Name2", name: "Name")
+         
+        let event3 = Event(fullName: "Full Name3", name: "Name")
+        
+        events += [event1, event2, event3]
+    }
+    
 }

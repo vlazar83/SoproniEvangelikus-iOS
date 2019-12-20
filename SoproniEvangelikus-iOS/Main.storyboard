@@ -63,6 +63,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="7MY-Sz-s9h" id="VnF-iL-aSj"/>
+                                    <outlet property="delegate" destination="7MY-Sz-s9h" id="jaD-55-rvu"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -101,6 +105,9 @@
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="gQ5-ap-uXT" id="nmw-BZ-6lB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hbg-ny-ME3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
