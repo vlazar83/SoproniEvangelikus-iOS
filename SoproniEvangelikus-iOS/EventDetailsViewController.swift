@@ -7,11 +7,18 @@
 //
 
 import UIKit
+import MapKit
 
 class EventDetailsViewController: UIViewController {
     
     @IBOutlet weak var eventNameLabel: UILabel!
     @IBOutlet weak var eventFullNameLabel: UILabel!
+    @IBOutlet weak var eventDateLabel: UILabel!
+    @IBOutlet weak var eventTimeLabel: UILabel!
+    @IBOutlet weak var eventPastorNameLabel: UILabel!
+    @IBOutlet weak var eventWithCommunionSwitch: UISwitch!
+    @IBOutlet weak var eventLocationMapView: MKMapView!
+    @IBOutlet weak var eventCommentsTextView: UITextView!
     
     var event: Event?
     
@@ -21,6 +28,9 @@ class EventDetailsViewController: UIViewController {
 
         eventNameLabel?.text = event?.name
         eventFullNameLabel?.text = event?.fullName
+        eventPastorNameLabel?.text = event?.pastorName
+        eventCommentsTextView?.text = event?.comments
+        eventWithCommunionSwitch?.isOn = event!.withCommunion
     }
     
 }

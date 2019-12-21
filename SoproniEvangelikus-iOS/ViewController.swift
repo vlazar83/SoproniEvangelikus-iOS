@@ -17,8 +17,8 @@ class ViewController: UIViewController, FUIAuthDelegate, UITableViewDelegate, UI
     fileprivate var _authHandle: AuthStateDidChangeListenerHandle!
     var user: User?
     var displayName = "Anonymous"
-    var events = [Event]()
-    var eventForSegue = Event(fullName: "",name: "")
+    var eventsArray = [Event]()
+    var eventForSegue : Event?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -106,8 +106,14 @@ class ViewController: UIViewController, FUIAuthDelegate, UITableViewDelegate, UI
             } else {
                 for document in querySnapshot!.documents {
                     print("\(document.documentID) => \(document.data())")
-                    let event = Event(fullName: document.data()["name"] as! String, name: document.data()["fullName"] as! String)
-                    self.events += [event]
+                    let event = Event(comments: document.data()["comments"] as! String,
+                                      fullName: document.data()["fullName"] as! String,
+                                      name: document.data()["name"] as! String,
+                                      pastorName: document.data()["pastorName"] as! String,
+                                      typeOfEvent: document.data()["typeOfEvent"] as! String,
+                                      withCommunion: (document.data()["withCommunion"] as! NSNumber).boolValue)
+                                      
+                    self.eventsArray += [event]
                     
                 }
                 // reload the data
@@ -137,7 +143,7 @@ class ViewController: UIViewController, FUIAuthDelegate, UITableViewDelegate, UI
     //MARK: TableView related methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return events.count
+        return eventsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -149,8 +155,8 @@ class ViewController: UIViewController, FUIAuthDelegate, UITableViewDelegate, UI
         }
         // Configure the cell...
         
-        // Fetches the appropriate meal for the data source layout.
-        let event = events[indexPath.row]
+        // Fetches the appropriate event for the data source layout.
+        let event = eventsArray[indexPath.row]
         
         cell.eventNameLabel.text = event.name
         cell.eventFullNameLabel.text = event.fullName
@@ -162,12 +168,11 @@ class ViewController: UIViewController, FUIAuthDelegate, UITableViewDelegate, UI
         NSLog("You selected cell number: \(indexPath.row)!");
 
         // here we get the cell from the selected row.
-        var selectedCell: EventTableViewCell
-        selectedCell=tableView.cellForRow(at: indexPath)! as! EventTableViewCell
+        //var selectedCell: EventTableViewCell
+        //selectedCell=tableView.cellForRow(at: indexPath)! as! EventTableViewCell
         
         // here we prepare the data for transmission using a segue
-        eventForSegue.fullName = selectedCell.eventFullNameLabel.text!
-        eventForSegue.name = selectedCell.eventNameLabel.text!
+        eventForSegue = eventsArray[indexPath.row]
         
         self.performSegue(withIdentifier: "EventDetails", sender: self)
         
