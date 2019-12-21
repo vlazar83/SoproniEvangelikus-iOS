@@ -26,9 +26,9 @@ class ViewController: UIViewController, FUIAuthDelegate, UITableViewDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        loadSampleEvents()
+        // loadSampleEvents()
         
-        // configureAuth()
+        configureAuth()
         
     }
     
@@ -108,7 +108,12 @@ class ViewController: UIViewController, FUIAuthDelegate, UITableViewDelegate, UI
             } else {
                 for document in querySnapshot!.documents {
                     print("\(document.documentID) => \(document.data())")
+                    let event = Event(fullName: document.data()["name"] as! String, name: document.data()["fullName"] as! String)
+                    self.events += [event]
+                    
                 }
+                // reload the data
+                self.tableView.reloadData()
             }
         }
         
