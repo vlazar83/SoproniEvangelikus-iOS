@@ -107,11 +107,80 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="gQ5-ap-uXT" id="nmw-BZ-6lB"/>
+                        <segue destination="kbd-HW-kFd" kind="show" identifier="EventDetails" id="ht0-vw-RVg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hbg-ny-ME3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="632.79999999999995" y="-31.03448275862069"/>
+        </scene>
+        <!--Event Details View Controller-->
+        <scene sceneID="eKN-Nr-ijw">
+            <objects>
+                <viewController id="kbd-HW-kFd" customClass="EventDetailsViewController" customModule="SoproniEvangelikus_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WER-LJ-hYi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2Z-Hm-eIs">
+                                <rect key="frame" x="16" y="60" width="97" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="K2Z-Hm-eIs" secondAttribute="height" multiplier="97:21" id="vZm-Xj-BEX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Full Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CjG-mf-6KC">
+                                <rect key="frame" x="16" y="97" width="128" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="CjG-mf-6KC" secondAttribute="height" multiplier="128:21" id="g7B-8L-tYq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Qa-vX-5KH">
+                                <rect key="frame" x="316" y="60" width="43" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="9Qa-vX-5KH" secondAttribute="height" multiplier="43:21" id="je8-cE-jrD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BAf-Kk-upn">
+                                <rect key="frame" x="286" y="97" width="73" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="BAf-Kk-upn" secondAttribute="height" multiplier="73:21" id="eOh-7T-SCC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="CjG-mf-6KC" firstAttribute="leading" secondItem="0n9-ks-oLd" secondAttribute="leading" constant="16" id="31O-CK-vvC"/>
+                            <constraint firstItem="CjG-mf-6KC" firstAttribute="top" secondItem="K2Z-Hm-eIs" secondAttribute="bottom" constant="16" id="7jK-wT-stL"/>
+                            <constraint firstItem="0n9-ks-oLd" firstAttribute="trailing" secondItem="9Qa-vX-5KH" secondAttribute="trailing" constant="16" id="Iec-G4-SKY"/>
+                            <constraint firstItem="K2Z-Hm-eIs" firstAttribute="leading" secondItem="0n9-ks-oLd" secondAttribute="leading" constant="16" id="OSU-pS-rF3"/>
+                            <constraint firstItem="K2Z-Hm-eIs" firstAttribute="top" secondItem="0n9-ks-oLd" secondAttribute="top" constant="16" id="R8o-Ks-7Er"/>
+                            <constraint firstItem="0n9-ks-oLd" firstAttribute="trailing" secondItem="BAf-Kk-upn" secondAttribute="trailing" constant="16" id="WWk-v4-KVd"/>
+                            <constraint firstItem="BAf-Kk-upn" firstAttribute="top" secondItem="9Qa-vX-5KH" secondAttribute="bottom" constant="16" id="wAg-pM-ASi"/>
+                            <constraint firstItem="9Qa-vX-5KH" firstAttribute="top" secondItem="0n9-ks-oLd" secondAttribute="top" constant="16" id="zgK-73-4dN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0n9-ks-oLd"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="tqe-cv-zZ9"/>
+                    <connections>
+                        <outlet property="eventFullNameLabel" destination="BAf-Kk-upn" id="a6S-9F-vm0"/>
+                        <outlet property="eventNameLabel" destination="9Qa-vX-5KH" id="lp1-wl-19S"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nw9-1i-gsl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1457" y="-31"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3cH-gc-uvs">

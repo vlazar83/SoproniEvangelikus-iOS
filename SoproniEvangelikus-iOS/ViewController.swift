@@ -17,16 +17,14 @@ class ViewController: UIViewController, FUIAuthDelegate, UITableViewDelegate, UI
     fileprivate var _authHandle: AuthStateDidChangeListenerHandle!
     var user: User?
     var displayName = "Anonymous"
+    var events = [Event]()
+    var eventForSegue = Event(fullName: "",name: "")
     
     @IBOutlet weak var tableView: UITableView!
-    
-    //MARK: Properties
-    var events = [Event]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        // loadSampleEvents()
         
         configureAuth()
         
@@ -36,6 +34,8 @@ class ViewController: UIViewController, FUIAuthDelegate, UITableViewDelegate, UI
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    //MARK: Firebase Auth and DB related methods
     
     func configureAuth(){
         
@@ -68,8 +68,6 @@ class ViewController: UIViewController, FUIAuthDelegate, UITableViewDelegate, UI
             }
         }
     }
-    
-    // MARK: Sign In and Out
     
     func signedInStatus(isSignedIn: Bool) {
         /*
@@ -119,6 +117,7 @@ class ViewController: UIViewController, FUIAuthDelegate, UITableViewDelegate, UI
         
     }
     
+    //MARK: UI interaction
     
     @IBAction func logoutButtonPressed(_ sender: Any) {
         let firebaseAuth = Auth.auth()
@@ -135,6 +134,8 @@ class ViewController: UIViewController, FUIAuthDelegate, UITableViewDelegate, UI
     @IBAction func menuButtonPressed(_ sender: Any) {
     }
 
+    //MARK: TableView related methods
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
     }
@@ -157,17 +158,29 @@ class ViewController: UIViewController, FUIAuthDelegate, UITableViewDelegate, UI
         return cell
     }
     
-    //MARK: Private Methods
-     
-    private func loadSampleEvents() {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        NSLog("You selected cell number: \(indexPath.row)!");
+
+        // here we get the cell from the selected row.
+        var selectedCell: EventTableViewCell
+        selectedCell=tableView.cellForRow(at: indexPath)! as! EventTableViewCell
         
-        let event1 = Event(fullName: "Full Name1", name: "Name")
-         
-        let event2 = Event(fullName: "Full Name2", name: "Name")
-         
-        let event3 = Event(fullName: "Full Name3", name: "Name")
+        // here we prepare the data for transmission using a segue
+        eventForSegue.fullName = selectedCell.eventFullNameLabel.text!
+        eventForSegue.name = selectedCell.eventNameLabel.text!
         
-        events += [event1, event2, event3]
+        self.performSegue(withIdentifier: "EventDetails", sender: self)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.destination is EventDetailsViewController
+        {
+            let vc = segue.destination as? EventDetailsViewController
+            // pass the event from the selected row o EventDetailsView
+            vc?.event = eventForSegue
+        }
     }
     
 }
