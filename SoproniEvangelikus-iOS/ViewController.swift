@@ -19,6 +19,7 @@ class ViewController: UIViewController, FUIAuthDelegate, UITableViewDelegate, UI
     var displayName = "Anonymous"
     var eventsArray = [Event]()
     var eventForSegue : Event?
+    var eventCreationVisited:Bool = false
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -33,6 +34,19 @@ class ViewController: UIViewController, FUIAuthDelegate, UITableViewDelegate, UI
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // reload the table content after we navigate back from event creation
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if(eventCreationVisited) {
+            clearEventsData()
+            readDataFromFireStore()
+            eventCreationVisited = false
+        }
+        
+        
     }
     
     //MARK: Firebase Auth and DB related methods
@@ -96,6 +110,10 @@ class ViewController: UIViewController, FUIAuthDelegate, UITableViewDelegate, UI
     func loginSession() {
         let authViewController = FUIAuth.defaultAuthUI()!.authViewController()
         present(authViewController, animated: true, completion: nil)
+    }
+    
+    func clearEventsData() {
+        eventsArray = []
     }
     
     func readDataFromFireStore(){
@@ -187,6 +205,8 @@ class ViewController: UIViewController, FUIAuthDelegate, UITableViewDelegate, UI
             let vc = segue.destination as? EventDetailsViewController
             // pass the event from the selected row o EventDetailsView
             vc?.event = eventForSegue
+        } else if segue.destination is CreateEventViewController {
+            eventCreationVisited = true
         }
     }
     

@@ -30,6 +30,40 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     @IBAction func createEventButton(_ sender: Any) {
         
+        let timeStampInFirebaseFormat = Timestamp(date: eventDateAndTimePicker.date)
+        let locationForEvent = eventLocationPickerView.selectedRow(inComponent: 0)
+        var locationForEventAsGeoPoint : GeoPoint
+        if(locationForEvent == 0){
+            locationForEventAsGeoPoint = Constants.churchLocation
+        }else {
+            locationForEventAsGeoPoint = Constants.congregationHouseLocation
+        }
+        
+        let db = Firestore.firestore()
+        // Add a new document with a generated ID
+        var ref: DocumentReference? = nil
+        ref = db.collection("events").addDocument(data: [
+            "eventDateAndTime": timeStampInFirebaseFormat,
+            "comments": eventCommentsTextField.text!,
+            "name": eventNameTextField.text!,
+            "location": locationForEventAsGeoPoint,
+            "typeOfEvent": eventTypeTextField.text!,
+            "pastorName": eventPastorNameTextField.text!,
+            "withCommunion": eventWithCommunionSwitcher.isOn,
+            "fullName": eventFullNameTextField.text!,
+            
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+                let messageVC = UIAlertController(title: "Result", message: "Event Created successfully" , preferredStyle: .actionSheet)
+                self.present(messageVC, animated: true) {
+                                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
+                                    messageVC.dismiss(animated: true, completion: nil)})}
+            }
+        }
+        
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
