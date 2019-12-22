@@ -107,7 +107,9 @@ class ViewController: UIViewController, FUIAuthDelegate, UITableViewDelegate, UI
                 for document in querySnapshot!.documents {
                     print("\(document.documentID) => \(document.data())")
                     let event = Event(comments: document.data()["comments"] as! String,
+                                      eventDateAndTime: document.data()["eventDateAndTime"] as! Timestamp,
                                       fullName: document.data()["fullName"] as! String,
+                                      location: document.data()["location"] as! GeoPoint,
                                       name: document.data()["name"] as! String,
                                       pastorName: document.data()["pastorName"] as! String,
                                       typeOfEvent: document.data()["typeOfEvent"] as! String,

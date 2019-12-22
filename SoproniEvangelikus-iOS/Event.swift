@@ -11,9 +11,11 @@ import Firebase
 
 class Event {
     
-    init(comments: String, fullName: String, name: String, pastorName: String, typeOfEvent: String, withCommunion: Bool) {
+    init(comments: String, eventDateAndTime: Timestamp, fullName: String, location: GeoPoint, name: String, pastorName: String, typeOfEvent: String, withCommunion: Bool) {
         self.comments = comments
+        self.eventDateAndTime = eventDateAndTime
         self.fullName = fullName
+        self.location = location
         self.name = name
         self.pastorName = pastorName
         self.typeOfEvent = typeOfEvent
@@ -23,9 +25,9 @@ class Event {
     //MARK: Properties
     
     var comments: String
-    //var eventDateAndTime: Timestamp
+    var eventDateAndTime: Timestamp
     var fullName: String
-    //var location: GeoPoint
+    var location: GeoPoint
     var name: String
     var pastorName: String
     var typeOfEvent: String

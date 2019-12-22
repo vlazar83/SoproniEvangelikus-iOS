@@ -6,8 +6,10 @@
 //  Copyright © 2019. admin. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import MapKit
+import Firebase
 
 class EventDetailsViewController: UIViewController {
     
@@ -22,8 +24,10 @@ class EventDetailsViewController: UIViewController {
     
     var event: Event?
     
-    override func viewDidLoad()
-    {
+    let churchLocation = GeoPoint(latitude: 47.685276, longitude: 16.589422)
+    let congregationHouseLocation = GeoPoint(latitude: 47.685263, longitude:16.588625)
+    
+    override func viewDidLoad(){
         super.viewDidLoad()
 
         eventNameLabel?.text = event?.name
@@ -31,6 +35,39 @@ class EventDetailsViewController: UIViewController {
         eventPastorNameLabel?.text = event?.pastorName
         eventCommentsTextView?.text = event?.comments
         eventWithCommunionSwitch?.isOn = event!.withCommunion
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let myString = formatter.string(from: (event?.eventDateAndTime.dateValue())!)
+        let dateAndTimeArray = myString.components(separatedBy:" ")
+        
+        eventDateLabel?.text = dateAndTimeArray[0]
+        eventTimeLabel?.text = dateAndTimeArray[1]
+
+        let eventLocationCoordinates = CLLocation(latitude: (event?.location.latitude)!, longitude: (event?.location.longitude)!)
+
+        centerMapOnLocation(location: eventLocationCoordinates)
+        
+        // decide event location for title setup in the next step
+        var location: String = ""
+        if(eventLocationCoordinates.coordinate.latitude == churchLocation.latitude && eventLocationCoordinates.coordinate.longitude == churchLocation.longitude){
+            
+            location = "Church"
+        } else {
+            location = "Congregation House"
+        }
+        
+        let eventLocation = EventLocation(title: location,
+          locationName: "Event Location",
+          coordinate: eventLocationCoordinates.coordinate)
+        eventLocationMapView.addAnnotation(eventLocation)
+    }
+    
+    let regionRadius: CLLocationDistance = 100
+    func centerMapOnLocation(location: CLLocation) {
+      let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
+        regionRadius, regionRadius)
+      eventLocationMapView.setRegion(coordinateRegion, animated: true)
     }
     
 }
