@@ -68,6 +68,14 @@
                                     <outlet property="delegate" destination="7MY-Sz-s9h" id="jaD-55-rvu"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ll-TC-Yor">
+                                <rect key="frame" x="271" y="617" width="88" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Create Event"/>
+                                <connections>
+                                    <segue destination="RO6-Hi-dJi" kind="show" id="eUu-pg-K3p"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -114,7 +122,7 @@
             </objects>
             <point key="canvasLocation" x="632.79999999999995" y="-31.03448275862069"/>
         </scene>
-        <!--Event Details View Controller-->
+        <!--Event Details-->
         <scene sceneID="eKN-Nr-ijw">
             <objects>
                 <viewController id="kbd-HW-kFd" customClass="EventDetailsViewController" customModule="SoproniEvangelikus_iOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -241,7 +249,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0n9-ks-oLd"/>
                     </view>
-                    <navigationItem key="navigationItem" id="tqe-cv-zZ9"/>
+                    <navigationItem key="navigationItem" title="Event Details" id="tqe-cv-zZ9"/>
                     <connections>
                         <outlet property="eventCommentsTextView" destination="iLS-fr-Scv" id="yCS-lE-tvc"/>
                         <outlet property="eventDateLabel" destination="Rub-oh-2Zp" id="7Zj-4w-dDy"/>
@@ -255,7 +263,147 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nw9-1i-gsl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1456.8" y="-31.03448275862069"/>
+            <point key="canvasLocation" x="1455" y="-454"/>
+        </scene>
+        <!--Create Event-->
+        <scene sceneID="J2t-9B-FxR">
+            <objects>
+                <viewController id="RO6-Hi-dJi" customClass="CreateEventViewController" customModule="SoproniEvangelikus_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PcV-W5-ng7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="qAt-PP-VCx">
+                                <rect key="frame" x="16" y="60" width="206" height="170.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNY-55-0lP">
+                                        <rect key="frame" x="0.0" y="0.0" width="97" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Full Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ryU-mi-I8V">
+                                        <rect key="frame" x="0.0" y="37.5" width="128" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Type:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X4C-HI-X0l">
+                                        <rect key="frame" x="0.0" y="75" width="89.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pastor Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Fl-AJ-5Oj">
+                                        <rect key="frame" x="0.0" y="112.5" width="103" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="With Communion:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HnJ-t6-GaX">
+                                        <rect key="frame" x="0.0" y="150" width="137" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="qAt-PP-VCx" secondAttribute="height" multiplier="64:53" id="7uj-Cf-ow2"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="9h3-0n-KOF">
+                                <rect key="frame" x="205.5" y="60" width="153.5" height="171"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pMi-me-FJr">
+                                        <rect key="frame" x="90" y="0.0" width="63.5" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" textContentType="name"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="full name" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oEp-od-uAr">
+                                        <rect key="frame" x="66.5" y="35" width="87" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" textContentType="name"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="event Type" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lh3-mw-oyw">
+                                        <rect key="frame" x="54.5" y="70" width="99" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="pastor name" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qhY-HN-tKF">
+                                        <rect key="frame" x="45" y="105" width="108.5" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" textContentType="name"/>
+                                    </textField>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="di8-FP-YNL">
+                                        <rect key="frame" x="104.5" y="140" width="51" height="31"/>
+                                    </switch>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="9h3-0n-KOF" secondAttribute="height" multiplier="95:106" id="eSp-Mn-PWG"/>
+                                </constraints>
+                            </stackView>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="jTe-1J-L1V">
+                                <rect key="frame" x="0.0" y="239" width="375" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="jTe-1J-L1V" secondAttribute="height" multiplier="25:8" id="RGS-X7-OOW"/>
+                                </constraints>
+                            </datePicker>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="comments..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="W8n-tY-qse">
+                                <rect key="frame" x="16" y="494" width="343" height="157"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="W8n-tY-qse" secondAttribute="height" multiplier="343:157" id="j9h-wB-ffu"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0fI-QD-7HF">
+                                <rect key="frame" x="0.0" y="367" width="375" height="119"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="0fI-QD-7HF" secondAttribute="height" multiplier="375:119" id="0OO-gw-yg8"/>
+                                </constraints>
+                            </pickerView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="0fI-QD-7HF" firstAttribute="top" secondItem="jTe-1J-L1V" secondAttribute="bottom" constant="8" id="2rT-Wd-MwN"/>
+                            <constraint firstItem="6e3-V8-NUq" firstAttribute="bottom" secondItem="W8n-tY-qse" secondAttribute="bottom" constant="16" id="5ja-U2-rhu"/>
+                            <constraint firstItem="jTe-1J-L1V" firstAttribute="top" secondItem="9h3-0n-KOF" secondAttribute="bottom" constant="8" id="8XV-C1-bgo"/>
+                            <constraint firstItem="W8n-tY-qse" firstAttribute="leading" secondItem="6e3-V8-NUq" secondAttribute="leading" constant="16" id="BrT-sl-6F5"/>
+                            <constraint firstItem="6e3-V8-NUq" firstAttribute="trailing" secondItem="W8n-tY-qse" secondAttribute="trailing" constant="16" id="Pyh-Kn-8EE"/>
+                            <constraint firstItem="0fI-QD-7HF" firstAttribute="leading" secondItem="6e3-V8-NUq" secondAttribute="leading" id="SqE-bq-CN4"/>
+                            <constraint firstItem="jTe-1J-L1V" firstAttribute="trailing" secondItem="6e3-V8-NUq" secondAttribute="trailing" id="TSj-Wk-KdH"/>
+                            <constraint firstItem="jTe-1J-L1V" firstAttribute="leading" secondItem="6e3-V8-NUq" secondAttribute="leading" id="UMG-zs-Emc"/>
+                            <constraint firstItem="qAt-PP-VCx" firstAttribute="top" secondItem="6e3-V8-NUq" secondAttribute="top" constant="16" id="atg-sc-AeE"/>
+                            <constraint firstItem="qAt-PP-VCx" firstAttribute="leading" secondItem="6e3-V8-NUq" secondAttribute="leading" constant="16" id="hMC-uB-3mL"/>
+                            <constraint firstItem="6e3-V8-NUq" firstAttribute="trailing" secondItem="9h3-0n-KOF" secondAttribute="trailing" constant="16" id="i68-4d-yfD"/>
+                            <constraint firstItem="9h3-0n-KOF" firstAttribute="top" secondItem="6e3-V8-NUq" secondAttribute="top" constant="16" id="mNE-V6-s79"/>
+                            <constraint firstItem="0fI-QD-7HF" firstAttribute="trailing" secondItem="6e3-V8-NUq" secondAttribute="trailing" id="zsN-jS-2Ol"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6e3-V8-NUq"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Create Event" id="9jk-dZ-ryn">
+                        <barButtonItem key="rightBarButtonItem" title="Create" id="TaW-MN-nih">
+                            <connections>
+                                <action selector="createEventButton:" destination="RO6-Hi-dJi" id="EnD-kY-V7b"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="eventCommentsTextField" destination="W8n-tY-qse" id="fuO-Lm-4Dr"/>
+                        <outlet property="eventDateAndTimePicker" destination="jTe-1J-L1V" id="6jR-a2-VqC"/>
+                        <outlet property="eventFullNameTextField" destination="oEp-od-uAr" id="RRf-CY-dar"/>
+                        <outlet property="eventLocationPickerView" destination="0fI-QD-7HF" id="air-2G-wNz"/>
+                        <outlet property="eventNameTextField" destination="pMi-me-FJr" id="utl-NP-IBr"/>
+                        <outlet property="eventPastorNameTextField" destination="qhY-HN-tKF" id="UqF-7z-Tgh"/>
+                        <outlet property="eventTypeTextField" destination="Lh3-mw-oyw" id="Vy0-z6-VBk"/>
+                        <outlet property="eventWithCommunionSwitcher" destination="di8-FP-YNL" id="hky-Hg-gD2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kdQ-Mb-Qza" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1453.5999999999999" y="231.63418290854574"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3cH-gc-uvs">
