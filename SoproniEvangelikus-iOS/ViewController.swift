@@ -117,8 +117,14 @@ class ViewController: UIViewController, FUIAuthDelegate, UITableViewDelegate, UI
     }
     
     func readDataFromFireStore(){
+        // calculate the seconds diff for the query to list events grater than yesterday.
+        var seconds = Timestamp(date: Date()).seconds
+        seconds -= (__int64_t)(Constants.aDayInMilliseconds / 1000.0)
         let db = Firestore.firestore()
-        db.collection("events").getDocuments() { (querySnapshot, err) in
+        let eventsRef = db.collection("events")
+        eventsRef.order(by: "eventDateAndTime", descending: false)
+            .whereField("eventDateAndTime", isGreaterThan: (Timestamp(seconds: seconds, nanoseconds: 0)))
+            .getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
