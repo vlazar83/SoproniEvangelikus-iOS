@@ -114,6 +114,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="createEventButton" destination="6ll-TC-Yor" id="igH-Ik-9yn"/>
                         <outlet property="tableView" destination="gQ5-ap-uXT" id="nmw-BZ-6lB"/>
                         <segue destination="kbd-HW-kFd" kind="show" identifier="EventDetails" id="ht0-vw-RVg"/>
                     </connections>

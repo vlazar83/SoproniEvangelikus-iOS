@@ -20,11 +20,16 @@ class ViewController: UIViewController, FUIAuthDelegate, UITableViewDelegate, UI
     var eventsArray = [Event]()
     var eventForSegue : Event?
     var eventCreationVisited:Bool = false
+    @IBOutlet weak var createEventButton: UIButton!
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // disable and hide the create event button first
+        self.signedInStatusForAdmin(isAdminSignedIn:false)
+        
         // Do any additional setup after loading the view, typically from a nib.
         
         configureAuth()
@@ -70,6 +75,11 @@ class ViewController: UIViewController, FUIAuthDelegate, UITableViewDelegate, UI
                     self.signedInStatus(isSignedIn: true)
                     let name = user!.email!.components(separatedBy: "@")[0]
                     self.displayName = name
+                    
+                    // check if we are admin - in this case enable the createEvent button
+                    if (user?.email == "lazar.viktor@gmail.com"){
+                        self.signedInStatusForAdmin(isAdminSignedIn:true)
+                    }
                     
                     // after successful login read the documents from Firestore
                     self.readDataFromFireStore()
@@ -151,7 +161,26 @@ class ViewController: UIViewController, FUIAuthDelegate, UITableViewDelegate, UI
     
     //MARK: UI interaction
     
+    func signedInStatusForAdmin(isAdminSignedIn: Bool) {
+        
+        if(isAdminSignedIn){
+            self.createEventButton.isHidden = false
+            self.createEventButton.isEnabled = true
+        }else {
+            self.createEventButton.isHidden = true
+            self.createEventButton.isEnabled = false
+        }
+        
+    }
+    
     @IBAction func logoutButtonPressed(_ sender: Any) {
+        
+        // disable and hide the create event button first
+        self.signedInStatusForAdmin(isAdminSignedIn:false)
+        
+        // clear the table view
+        clearEventsData()
+        
         let firebaseAuth = Auth.auth()
         do {
           try firebaseAuth.signOut()
